@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from base.schemas import *
+from schemas.base import *
 
 app = FastAPI()
 
