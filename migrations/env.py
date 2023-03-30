@@ -3,8 +3,12 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
-from config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
 
+from src.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
+import os
+import sys
+
+sys.path.append(os.path.join(sys.path[0], 'src'))
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -23,7 +27,7 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from models.models import Base
+from auth.models import Base
 
 target_metadata = Base.metadata
 
