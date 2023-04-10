@@ -46,7 +46,7 @@ async def get_my_tasks(user: User = Depends(current_user), session: AsyncSession
     return f"hello {user.username}, your tasks are :", tasks
 
 
-@router.put('/change_active/{task_id}')
+@router.patch('/change_active/{task_id}')
 async def change_active(task_id: int, is_active: bool, user: User = Depends(current_user),
                         session: AsyncSession = Depends(get_async_session)):
     # check task
