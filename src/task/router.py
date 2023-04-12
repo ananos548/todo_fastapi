@@ -1,3 +1,4 @@
+from fastapi_cache.decorator import cache
 from sqlalchemy import select, insert, orm, update
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
@@ -25,6 +26,7 @@ async def add_tasks(new_task: TaskSchema, session: AsyncSession = Depends(get_as
 
 
 @router.get('/user_tasks/')
+@cache(expire=30)
 async def get_user_tasks(user_id: UUID, user: User = Depends(current_user),
                          session: AsyncSession = Depends(get_async_session)):
     """get user tasks (for superuser only)"""
