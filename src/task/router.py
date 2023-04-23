@@ -53,7 +53,7 @@ async def change_active(task_id: int, is_active: bool, user: User = Depends(curr
                         session: AsyncSession = Depends(get_async_session)):
     # check task
     task = await session.execute(select(Task).where(Task.user == user).where(Task.task_id == task_id))
-    if not task.scalar():
+    if not task:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"You haven't task with id {task_id}")
 
     # update is_active
@@ -66,4 +66,3 @@ async def change_active(task_id: int, is_active: bool, user: User = Depends(curr
     result = await session.execute(query_task)
     tasks_status = result.scalars().all()
     return {"status": status.HTTP_200_OK}, f"task status: {str(tasks_status)}"
-
