@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, String, Text, TIMESTAMP, ForeignKey, Boolean, Integer
 from sqlalchemy.orm import declarative_base, Mapped, mapped_column, relationship
 
-Base = declarative_base()
+from database import Base
 
 
 class Task(Base):
